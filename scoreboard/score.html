@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scorekeeper</title>
+</head>
+<body>
+
+  <h1>
+    <span id="p1-score">0</span>
+     to
+     <span id="p2-score">0</span>
+   </h1>
+
+  <p>Playing to: <span id="score-cap">5</span></p>
+
+  <input id="input-score" oninput="changeScoreCap(this)" type="number">
+  <button id="btn-p1" onclick="onPlayerOneClick()">Player One</button>
+  <button id="btn-p2" onclick="onPlayerTwoClick()">Player Two</button>
+  <button id="reset" onclick="onReset()">Reset</button>
+
+  <script type="text/javascript" src="score.js">
+  </script>
+</body>
+</html>
