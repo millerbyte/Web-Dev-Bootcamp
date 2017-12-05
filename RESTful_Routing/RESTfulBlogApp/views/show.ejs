@@ -9,12 +9,13 @@
         <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
         <div class="content">
           <span><%= blog.created.toDateString() %></span>
+          <div class="description">
+            <p>
+              <%- blog.body %>
+            </p>
+          </div>
         </div>
-        <div class="description">
-          <p>
-            <%- blog.body %>
-          </p>
-        </div>
+
       </div>
 
     </div>
