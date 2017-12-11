@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>YelpCamp</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -16,10 +17,13 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/">Login</a></li>
-          <li><a href="/">Register</a></li>
-          <li><a href="/">Logout</a></li>
-          </li>
+          <% if(!currentUser) {%>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          <% } else {%>
+            <li><a href="#">Hello, <%=currentUser.username %>!</a></li>
+            <li><a href="/logout">Logout</a></li>
+          <% } %>
         </ul>
       </div>
     </div>

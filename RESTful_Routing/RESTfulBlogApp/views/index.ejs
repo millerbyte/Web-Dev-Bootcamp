@@ -1,24 +1,35 @@
 <% include partials/header %>
-  <h1>INDEX</h1>
 
-  <% blogs.forEach((blog) => { %>
-    <div class="ui text container segment">
-      <div class="ui top attached">
-        <div class="item">
-          <h2><%= blog.title %></h2>
-          <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
-          <div class="content">
-            <div class="description">
-              <p>
-                <%= blog.body.substring(0, 128) %>...
-              </p>
+  <div class="ui main text container">
+    <div class="ui huge header">RESTful Blog</div>
+    <div class="ui top attached segment">
+      <div class="ui divided items">
+        <% blogs.forEach((blog) => { %>
+          <div class="item">
+            <div class="image">
+              <img src="<%= blog.image %>">
             </div>
-            <a href="/blogs/<%= blog._id %>">Read More</a>
+            <div class="content">
+              <a href="/blogs/<%= blog._id %>" class="header">
+                <%= blog.title %>
+              </a>
+              <div class="meta">
+                <span><%= blog.created.toDateString() %></span>
+              </div>
+              <div class="description">
+                <p><%- blog.body.substring(0, 128) %>...</p>
+              </div>
+              <div class="extra">
+                <a ref="/blogs/<%= blog._id %>" class="ui floated blue button">
+                  Read More
+                  <i class="right chevron icon"></i>
+                </a>
+              </div>
+            </div>
           </div>
-          <span><%= blog.created %></span>
-        </div>
+          <% }) %>
       </div>
     </div>
-    <% }) %>
+  </div>
 
-      <% include partials/footer %>
+  <% include partials/footer %>
