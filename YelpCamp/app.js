@@ -3,6 +3,7 @@ const express = require('express'),
   seedDB = require('./seeds'),
   mongoose = require('mongoose'),
   passport = require('passport'),
+  flash = require('connect-flash'),
   bodyParser = require('body-parser'),
   LocalStrategy = require('passport-local'),
   methodOverride = require('method-override'),
@@ -23,6 +24,7 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(`${__dirname}/public`));
+app.use(flash());
 
 // seedDB(); // Seed the DB
 
@@ -41,6 +43,8 @@ passport.deserializeUser(USER.deserializeUser());
 app.use((req, res, next) => {
   // Locals determines what objectd are visible in EJS template
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
   next();
 });
 
