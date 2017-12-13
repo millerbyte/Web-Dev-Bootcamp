@@ -10,6 +10,8 @@ const express = require('express'),
   USER = require('./models/user'),
   COMMENT = require('./models/comment'),
   CAMPGROUND = require('./models/campground');
+  // PORT = process.env.PORT || 8000,
+  // IP = process.env.IP || '127.0.0.1';
 
 // Requiring Routes
 const commentRoutes = require('./routes/comments'),
@@ -17,7 +19,13 @@ const commentRoutes = require('./routes/comments'),
   authRoutes = require('./routes/auth');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/yelp_camp', {useMongoClient: true});
+
+let dbURL = process.env.DATABASEURL || 'mongodb://matthew:dbpass123@ds137336.mlab.com:37336/yelpers';
+// mongoose.connect('mongodb://localhost/yelp_camp', {useMongoClient: true});
+//mongoose.connect('mongodb://matthew:dbpass123@ds137336.mlab.com:37336/yelpers', {useMongoClient: true});
+
+mongoose.connect(dbURL, {useMongoClient: true});
+
 
 app.set('view engine', 'ejs');
 
@@ -52,6 +60,10 @@ app.use(authRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 
-app.listen(8000, () => {
-  console.log('The YelpCamp Server running on port 8000');
+// app.listen(PORT, IP, () => {
+//   console.log('The YelpCamp Server running on port ' + PORT);
+// });
+
+app.listen(process.env.PORT, process.env.IP, () => {
+
 });
